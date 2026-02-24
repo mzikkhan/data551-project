@@ -68,7 +68,19 @@ app.index_string = '''
             .top-filter-card { height: 100%; border-top: 4px solid #3b82f6; border-radius: 12px; }
             
             .kpi-title { font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #64748b; margin-bottom: 12px; }
-            .kpi-value { font-size: 2.2rem; font-weight: 700; color: #0f172a; margin-bottom: 4px; letter-spacing: -0.02em; }
+            .kpi-value { 
+                font-size: 2.2rem; 
+                font-weight: 700; 
+                color: #0f172a; 
+                margin-bottom: 16px; 
+                letter-spacing: -0.02em; 
+                background: #f8fafc;
+                border: 1px solid #e2e8f0;
+                border-radius: 8px;
+                padding: 10px 15px;
+                display: inline-block;
+                width: 100%;
+            }
             .kpi-sub { font-size: 0.85rem; color: #94a3b8; font-weight: 500;}
             
             .kpi-positive { color: #10b981; font-weight: 600; padding: 2px 6px; background: rgba(16, 185, 129, 0.1); border-radius: 4px; }
@@ -227,7 +239,7 @@ app.layout = dbc.Container(fluid=True, className='p-4', children=[
             create_kpi('kpi-inflation', 'Inflation (%)'),
             html.Div(className='kpi-card', children=[
                 html.Div('Regime Type', className='kpi-title'),
-                html.Div(id='kpi-regime-value', className='kpi-value', style={'fontSize': '1.5rem', 'marginBottom': '10px'})
+                html.Div(id='kpi-regime-value', className='kpi-value', style={'fontSize': '1.3rem', 'marginBottom': '0px'})
             ]),
             create_kpi('kpi-women', 'Women Representation'),
             create_kpi('kpi-health', 'Health (Life Expectancy)')
