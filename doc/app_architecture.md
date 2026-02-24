@@ -17,7 +17,11 @@ The script begins by importing necessary libraries:
 
 ## 3. Application Initialization and Styling
 - The script initializes the Dash app: `app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])`.
-- Custom CSS logic is injected via `app.index_string`. This CSS block defines how the "Cards" (the white boxes holding charts and KPIs) look. It defines their background colors, shadows, borders, font sizes, and color-coding for positive/negative change percentages.
+- Custom CSS logic is injected via `app.index_string`. This CSS block defines how the "Cards" (the white boxes holding charts and KPIs) look. It includes premium aesthetics such as:
+  - Importing the **Inter Google Font**.
+  - A subtle **glassmorphism/floating effect** with `#f0f4f8` background, drop shadows, and rounded borders.
+  - Hover micro-animations so cards float upwards.
+  - Distinct **purple borders** (`2px solid #8b5cf6` and `6px` top accent) framing all KPI values.
 
 ## 4. Layout Structure (`app.layout`)
 Dash uses a declarative component tree to build the UI, mapping directly to HTML. The layout is wrapped in a Bootstrap `dbc.Container`:
@@ -26,7 +30,7 @@ Dash uses a declarative component tree to build the UI, mapping directly to HTML
 - **Rows and Columns**: The dashboard is divided into distinct sections using `dbc.Row` and `dbc.Col`. Boostrap uses a 12-column grid system. For instance, `md=4` means a column takes up 4/12 (one-third) of the screen width on medium and larger devices.
 
 ### Section Breakdown
-1. **Top Row**: Contains the `Group` and `Selection` dropdown menus (using `dcc.Dropdown`) on the left, and the three large, top KPI cards (CO2 Emissions, GDP, Natural Resource Depletion) on the right.
+1. **Top Row**: Contains the `Group`, `Selection` dropdown menus (using `dcc.Dropdown`), and a `Year Range` slider (using `dcc.RangeSlider`) on the left half (`md=6`), and the three large, top KPI cards (CO2 Emissions, GDP, Natural Resource Depletion) on the right half.
 2. **Bottom Row**:
    - **Left**: The large "Environment Factors" chart taking up half the width (`md=6`). It includes its own inner dropdown to toggle the metric being viewed.
    - **Middle**: Two vertically stacked smaller charts ("Economic Trackers" and "SDG Tracker") taking up one-third of the width (`md=4`), each with their own metric toggles.
@@ -41,11 +45,11 @@ Callbacks are the heart of Dash. They map inputs (like a user changing a dropdow
 - **Outputs**: It updates the label above the second dropdown and populates its internal selectable options. For instance, if you pick "Continent", the options become a list of continents. If you pick "Country", the options become a list of all countries. It then defaults the selection to the first item in that list.
 
 ### Second Callback: `update_dashboard`
-- **Inputs**: Listens to the selection from the second dropdown (the specific `entity`), as well as the metric selections for the three different line charts.
+- **Inputs**: Listens to the selection from the second dropdown (the specific `entity`), the `year_range` from the slider, as well as the metric selections for the three different line charts.
 - **Logic**:
-  - Filters the entire pandas DataFrame down to only rows matching the selected entity (`filtered = df_filtered[df_filtered[group] == entity]`).
+  - Filters the entire pandas DataFrame down to only rows matching the selected entity and the selected year range (`filtered = df_filtered[(df_filtered[group] == entity) & (df_filtered['Year'].dt.year >= year_range[0]) & ...]`).
   - Passes this filtered data to the `get_line_chart()` helper function to generate the HTML for the three Altair charts.
-  - Extracts the data for the most recent year (`curr`) and the year prior (`prev`) in the dataset for that specific entity.
+  - Extracts the data for the most recent year (`curr`) and the year prior (`prev`) in the filtered dataset for that specific entity.
   - Passes these values through helper functions (`calc_kpi_large` and `calc_kpi`) to calculate the percentage change contextually and format the text properly (e.g., adding "B" for billions).
 - **Outputs**: It returns 16 different values simultaneously! These values update the `srcDoc` (HTML content) of the three chart iframes, and update the `<H3>` and subtext components of the 6 different KPI cards on the dashboard.
 
