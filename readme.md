@@ -22,13 +22,13 @@ Each chart panel features internal dropdown menus, allowing users to toggle spec
 ### Installation
 
 To install the app locally:
-      ```bash
+      ```
       pip install -r requirements.txt
       ```
 
 
 To run the app locally:
-      ```bash
+      ```
       python src/app.py
       ```
 
