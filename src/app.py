@@ -51,7 +51,17 @@ app.index_string = '''
                 font-family: 'Inter', sans-serif; 
                 color: #334155;
             }
-            .kpi-card, .chart-card, .top-filter-card { 
+            .kpi-card { 
+                background-color: #ffffff; 
+                border-radius: 12px; 
+                padding: 20px; 
+                box-shadow: 0 4px 10px rgba(139, 92, 246, 0.15); 
+                margin-bottom: 20px; 
+                border: 2px solid #8b5cf6 !important; /* Purple colored border */
+                border-top: 6px solid #8b5cf6 !important; /* Accent top border */
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            .chart-card, .top-filter-card { 
                 background-color: #ffffff; 
                 border-radius: 16px; 
                 padding: 20px; 
@@ -62,26 +72,20 @@ app.index_string = '''
             }
             .kpi-card:hover, .chart-card:hover {
                 transform: translateY(-5px);
-                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+                box-shadow: 0 10px 15px -3px rgba(139, 92, 246, 0.2), 0 4px 6px -2px rgba(139, 92, 246, 0.1);
             }
             .chart-card { min-height: 400px; padding: 25px; }
             .top-filter-card { height: 100%; border-top: 4px solid #3b82f6; border-radius: 12px; }
             
-            .kpi-title { font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #64748b; margin-bottom: 12px; }
+            .kpi-title { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #475569; margin-bottom: 12px; }
             .kpi-value { 
                 font-size: 2.2rem; 
-                font-weight: 700; 
+                font-weight: 800; 
                 color: #0f172a; 
-                margin-bottom: 16px; 
+                margin-bottom: 8px; 
                 letter-spacing: -0.02em; 
-                background: #f8fafc;
-                border: 1px solid #e2e8f0;
-                border-radius: 8px;
-                padding: 10px 15px;
-                display: inline-block;
-                width: 100%;
             }
-            .kpi-sub { font-size: 0.85rem; color: #94a3b8; font-weight: 500;}
+            .kpi-sub { font-size: 0.85rem; color: #64748b; font-weight: 600;}
             
             .kpi-positive { color: #10b981; font-weight: 600; padding: 2px 6px; background: rgba(16, 185, 129, 0.1); border-radius: 4px; }
             .kpi-negative { color: #ef4444; font-weight: 600; padding: 2px 6px; background: rgba(239, 68, 68, 0.1); border-radius: 4px;}
