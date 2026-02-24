@@ -25,6 +25,8 @@ To install the app locally:
       ```bash
       pip install -r requirements.txt
       ```
+
+
 To run the app locally:
       ```bash
       python src/app.py
