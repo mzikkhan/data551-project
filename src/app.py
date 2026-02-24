@@ -57,8 +57,8 @@ app.index_string = '''
                 padding: 20px; 
                 box-shadow: 0 4px 10px rgba(139, 92, 246, 0.15); 
                 margin-bottom: 20px; 
-                border: 2px solid #8b5cf6 !important; /* Purple colored border */
-                border-top: 6px solid #8b5cf6 !important; /* Accent top border */
+                border: 2px solid #298c8c !important; 
+                border-top: 6px solid #298c8c !important; 
                 transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             }
             .chart-card, .top-filter-card { 
@@ -75,7 +75,7 @@ app.index_string = '''
                 box-shadow: 0 10px 15px -3px rgba(139, 92, 246, 0.2), 0 4px 6px -2px rgba(139, 92, 246, 0.1);
             }
             .chart-card { min-height: 400px; padding: 25px; }
-            .top-filter-card { height: 100%; border-top: 4px solid #3b82f6; border-radius: 12px; }
+            .top-filter-card { height: 100%; border-top: 4px solid #298c8c; border-radius: 12px; }
             
             .kpi-title { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #475569; margin-bottom: 12px; }
             .kpi-value { 
@@ -93,6 +93,30 @@ app.index_string = '''
             .chart-title { font-size: 1.15rem; font-weight: 700; color: #1e293b; letter-spacing: -0.01em; }
             .dropdown-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #64748b; margin-bottom: 8px; letter-spacing: 0.05em;}
             
+            /* Customizing the Year Range Slider color */
+            .rc-slider-track, .dash-slider-range {
+                background-color: #298c8c !important;
+            }
+            .rc-slider .rc-slider-handle, 
+            .rc-slider .rc-slider-handle:active, 
+            .rc-slider .rc-slider-handle:focus, 
+            .rc-slider .rc-slider-handle:hover,
+            .dash-slider-thumb,
+            .dash-slider-thumb:active,
+            .dash-slider-thumb:focus,
+            .dash-slider-thumb:hover {
+                border-color: #298c8c !important;
+                background-color: #298c8c !important;
+                box-shadow: none !important;
+            }
+            .rc-slider .rc-slider-handle-active:active,
+            .dash-slider-thumb:active {
+                box-shadow: 0 0 5px #298c8c !important;
+            }
+            .rc-slider-dot-active {
+                border-color: #298c8c !important;
+            }
+
             /* Customizing Dash Dropdowns to look sleek */
             .Select-control { border-radius: 8px !important; border: 1px solid #cbd5e1 !important; box-shadow: none !important; }
             .Select-control:hover { border-color: #94a3b8 !important; }
@@ -171,8 +195,8 @@ app.layout = dbc.Container(fluid=True, className='p-4', children=[
         # Top KPIs
         dbc.Col(md=6, children=[
             dbc.Row(children=[
-                dbc.Col(width=4, children=create_kpi('kpi-co2', 'CO2 Emissions (% GNI)')),
-                dbc.Col(width=4, children=create_kpi('kpi-gdp', 'GDP')),
+                dbc.Col(width=4, children=create_kpi('kpi-co2', 'CO2 Emissions (Million Tonnes)')),
+                dbc.Col(width=4, children=create_kpi('kpi-gdp', 'GDP (USD)')),
                 dbc.Col(width=4, children=create_kpi('kpi-natres', 'Natural Resources Depletion (%)'))
             ])
         ])
@@ -191,7 +215,7 @@ app.layout = dbc.Container(fluid=True, className='p-4', children=[
                         options=[
                             {'label': 'CO2 Emissions', 'value': 'CO2_Emissions'},
                             {'label': 'CO2 Damage (% GNI)', 'value': 'CO2_Damage_GNI'},
-                            {'label': 'Elect. Access', 'value': 'Elec_Access'}
+                            {'label': 'Electricity Access', 'value': 'Elec_Access'}
                         ],
                         value='CO2_Emissions',
                         clearable=False
@@ -223,7 +247,7 @@ app.layout = dbc.Container(fluid=True, className='p-4', children=[
             # SDG Tracker
             html.Div(className='chart-card', style={'minHeight': '260px'}, children=[
                 dbc.Row(children=[
-                    dbc.Col(html.Div("SDG Tracker", className='chart-title'), width=8),
+                    dbc.Col(html.Div("Social Progress", className='chart-title'), width=8),
                     dbc.Col(dcc.Dropdown(
                         id='sdg-metric-dropdown',
                         options=[
@@ -330,9 +354,9 @@ def update_dashboard(group, entity, year_range, env_metric, econ_metric, sdg_met
         (df_filtered['Year'].dt.year <= year_range[1])
     ]
     
-    env_html = get_line_chart(filtered, env_metric, '#3b82f6', 400) # Blue
-    econ_html = get_line_chart(filtered, econ_metric, '#8b5cf6', 180) # Purple
-    sdg_html = get_line_chart(filtered, sdg_metric, '#10b981', 180) # Emerald
+    env_html = get_line_chart(filtered, env_metric, '#f1a226', 400) 
+    econ_html = get_line_chart(filtered, econ_metric, '#f1a226', 180) 
+    sdg_html = get_line_chart(filtered, sdg_metric, '#f1a226', 180) 
     
     # KPI Logic: Compare max year vs previous year in dataset
     if filtered.empty:
