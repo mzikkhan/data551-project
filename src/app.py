@@ -33,7 +33,7 @@ df_filtered['Year'] = pd.to_datetime(df_filtered['Year'], format='%Y')
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 server = app.server
 
-# Custom CSS for styling cards
+# Custom CSS for styling cards and premium aesthetics
 app.index_string = '''
 <!DOCTYPE html>
 <html>
@@ -42,19 +42,45 @@ app.index_string = '''
         <title>{%title%}</title>
         {%favicon%}
         {%css%}
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
         <style>
-            body { background-color: #f8f9fa; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-            .kpi-card { background-color: white; border-radius: 8px; padding: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); margin-bottom: 20px; border: 1px solid #e9ecef; }
-            .chart-card { background-color: white; border-radius: 8px; padding: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); margin-bottom: 20px; border: 1px solid #e9ecef; min-height: 400px; }
-            .kpi-title { font-size: 0.9rem; font-weight: 600; color: #1a237e; margin-bottom: 10px; }
-            .kpi-value { font-size: 1.8rem; font-weight: bold; margin-bottom: 0; }
-            .kpi-sub { font-size: 0.8rem; color: #6c757d; }
-            .kpi-change { font-size: 0.8rem; font-weight: bold; }
-            .kpi-positive { color: #28a745; }
-            .kpi-negative { color: #dc3545; }
-            .chart-title { font-size: 1.1rem; font-weight: 600; color: #1a237e; }
-            .dropdown-label { font-size: 0.85rem; font-weight: 600; color: #1a237e; margin-bottom: 5px; }
-            .top-filter-card { background-color: white; border-radius: 8px; padding: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); height: 100%; border: 1px solid #e9ecef;}
+            body { 
+                background-color: #f0f4f8; 
+                font-family: 'Inter', sans-serif; 
+                color: #334155;
+            }
+            .kpi-card, .chart-card, .top-filter-card { 
+                background-color: #ffffff; 
+                border-radius: 16px; 
+                padding: 20px; 
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03); 
+                margin-bottom: 20px; 
+                border: 1px solid rgba(226, 232, 240, 0.8); 
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            .kpi-card:hover, .chart-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            }
+            .chart-card { min-height: 400px; padding: 25px; }
+            .top-filter-card { height: 100%; border-top: 4px solid #3b82f6; border-radius: 12px; }
+            
+            .kpi-title { font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #64748b; margin-bottom: 12px; }
+            .kpi-value { font-size: 2.2rem; font-weight: 700; color: #0f172a; margin-bottom: 4px; letter-spacing: -0.02em; }
+            .kpi-sub { font-size: 0.85rem; color: #94a3b8; font-weight: 500;}
+            
+            .kpi-positive { color: #10b981; font-weight: 600; padding: 2px 6px; background: rgba(16, 185, 129, 0.1); border-radius: 4px; }
+            .kpi-negative { color: #ef4444; font-weight: 600; padding: 2px 6px; background: rgba(239, 68, 68, 0.1); border-radius: 4px;}
+            
+            .chart-title { font-size: 1.15rem; font-weight: 700; color: #1e293b; letter-spacing: -0.01em; }
+            .dropdown-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #64748b; margin-bottom: 8px; letter-spacing: 0.05em;}
+            
+            /* Customizing Dash Dropdowns to look sleek */
+            .Select-control { border-radius: 8px !important; border: 1px solid #cbd5e1 !important; box-shadow: none !important; }
+            .Select-control:hover { border-color: #94a3b8 !important; }
+            .has-value.Select--single > .Select-control .Select-value .Select-value-label, .has-value.is-pseudo-focused.Select--single > .Select-control .Select-value .Select-value-label { color: #0f172a !important; font-weight: 500; }
         </style>
     </head>
     <body>
@@ -197,25 +223,26 @@ app.layout = dbc.Container(fluid=True, className='p-4', children=[
 ])
 
 # Utility to render charts
-def get_line_chart(df, y_col, color='#1c32c8', height=200):
+def get_line_chart(df, y_col, color='#3b82f6', height=200):
     if df.empty or y_col not in df.columns:
         return ""
     # Aggregate mean per year
     agg_df = df.groupby('Year', as_index=False)[y_col].mean()
     
-    chart = alt.Chart(agg_df).mark_line(point=alt.OverlayMarkDef(filled=False, fill='white')).encode(
-        x=alt.X('Year:T', title=''),
-        y=alt.Y(f'{y_col}:Q', title=''),
+    chart = alt.Chart(agg_df).mark_line(
+        point=alt.OverlayMarkDef(filled=True, fill='white', size=60, strokeWidth=2),
+        strokeWidth=3,
+        interpolate='monotone'
+    ).encode(
+        x=alt.X('Year:T', title='', axis=alt.Axis(grid=False, labelColor='#64748b', domainColor='#e2e8f0', tickColor='#e2e8f0')),
+        y=alt.Y(f'{y_col}:Q', title='', axis=alt.Axis(grid=True, gridColor='#f1f5f9', gridDash=[4,4], labelColor='#64748b', domain=False, ticks=False)),
         color=alt.value(color),
-        tooltip=['Year:T', alt.Tooltip(f'{y_col}:Q', format='.2f')]
+        tooltip=[alt.Tooltip('Year:T', title='Year'), alt.Tooltip(f'{y_col}:Q', format='.2f', title='Value')]
     ).properties(
         width='container',
         height=height
-    ).configure_axis(
-        grid=False,
-        domain=False
     ).configure_view(
-        strokeWidth=0
+        strokeOpacity=0
     )
     return chart.to_html()
 
@@ -268,9 +295,9 @@ def update_dashboard(group, entity, env_metric, econ_metric, sdg_metric):
         
     filtered = df_filtered[df_filtered[group] == entity]
     
-    env_html = get_line_chart(filtered, env_metric, '#1c32c8', 400)
-    econ_html = get_line_chart(filtered, econ_metric, '#1c32c8', 180)
-    sdg_html = get_line_chart(filtered, sdg_metric, '#1c32c8', 180)
+    env_html = get_line_chart(filtered, env_metric, '#3b82f6', 400) # Blue
+    econ_html = get_line_chart(filtered, econ_metric, '#8b5cf6', 180) # Purple
+    sdg_html = get_line_chart(filtered, sdg_metric, '#10b981', 180) # Emerald
     
     # KPI Logic: Compare max year vs previous year in dataset
     if filtered.empty:
