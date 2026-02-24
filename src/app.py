@@ -106,9 +106,9 @@ app.layout = dbc.Container(fluid=True, className='p-4', children=[
     # TOP ROW: Filters and Top KPIs
     dbc.Row(className='mb-4 align-items-stretch', children=[
         # Filters
-        dbc.Col(md=4, children=[
+        dbc.Col(md=6, children=[
             dbc.Row(className='h-100', children=[
-                dbc.Col(width=6, children=[
+                dbc.Col(width=4, children=[
                     html.Div(className='top-filter-card', children=[
                         html.Div("Group", className='dropdown-label'),
                         dcc.Dropdown(
@@ -124,7 +124,7 @@ app.layout = dbc.Container(fluid=True, className='p-4', children=[
                         )
                     ])
                 ]),
-                dbc.Col(width=6, children=[
+                dbc.Col(width=4, children=[
                     html.Div(className='top-filter-card', children=[
                         html.Div("Selection", id='entity-dropdown-label', className='dropdown-label'),
                         dcc.Dropdown(
@@ -134,12 +134,26 @@ app.layout = dbc.Container(fluid=True, className='p-4', children=[
                             clearable=False
                         )
                     ])
+                ]),
+                dbc.Col(width=4, children=[
+                    html.Div(className='top-filter-card', children=[
+                        html.Div("Year Range", className='dropdown-label'),
+                        dcc.RangeSlider(
+                            id='year-slider',
+                            min=int(df_filtered['Year'].dt.year.min()),
+                            max=int(df_filtered['Year'].dt.year.max()),
+                            value=[int(df_filtered['Year'].dt.year.min()), int(df_filtered['Year'].dt.year.max())],
+                            step=1,
+                            marks=None,
+                            tooltip={"placement": "bottom", "always_visible": True}
+                        )
+                    ])
                 ])
             ])
         ]),
         
         # Top KPIs
-        dbc.Col(md=8, children=[
+        dbc.Col(md=6, children=[
             dbc.Row(children=[
                 dbc.Col(width=4, children=create_kpi('kpi-co2', 'CO2 Emissions (% GNI)')),
                 dbc.Col(width=4, children=create_kpi('kpi-gdp', 'GDP')),
@@ -213,7 +227,7 @@ app.layout = dbc.Container(fluid=True, className='p-4', children=[
             create_kpi('kpi-inflation', 'Inflation (%)'),
             html.Div(className='kpi-card', children=[
                 html.Div('Regime Type', className='kpi-title'),
-                html.Div(id='kpi-regime-value', style={'fontSize': '1.1rem', 'marginTop': '10px'})
+                html.Div(id='kpi-regime-value', className='kpi-value', style={'fontSize': '1.5rem', 'marginBottom': '10px'})
             ]),
             create_kpi('kpi-women', 'Women Representation'),
             create_kpi('kpi-health', 'Health (Life Expectancy)')
@@ -285,15 +299,20 @@ def update_entity_options(selected_group):
     ],
     [Input('group-dropdown', 'value'),
      Input('entity-dropdown', 'value'),
+     Input('year-slider', 'value'),
      Input('env-metric-dropdown', 'value'),
      Input('econ-metric-dropdown', 'value'),
      Input('sdg-metric-dropdown', 'value')]
 )
-def update_dashboard(group, entity, env_metric, econ_metric, sdg_metric):
-    if not group or not entity or group not in df_filtered.columns:
+def update_dashboard(group, entity, year_range, env_metric, econ_metric, sdg_metric):
+    if not group or not entity or group not in df_filtered.columns or not year_range:
         return "", "", "", "-", "", "-", "", "-", "", "-", "", "-", "", "-", "", "-"
         
-    filtered = df_filtered[df_filtered[group] == entity]
+    filtered = df_filtered[
+        (df_filtered[group] == entity) & 
+        (df_filtered['Year'].dt.year >= year_range[0]) & 
+        (df_filtered['Year'].dt.year <= year_range[1])
+    ]
     
     env_html = get_line_chart(filtered, env_metric, '#3b82f6', 400) # Blue
     econ_html = get_line_chart(filtered, econ_metric, '#8b5cf6', 180) # Purple
