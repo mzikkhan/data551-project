@@ -20,7 +20,7 @@ Each chart panel features internal dropdown menus, allowing users to toggle spec
 ![Dashboard Sketch - Single Entity Analysis](screen_1.png)
 
 ### Installation
-This section is for those interested in helping you develop your dashboard.
+
     - To install the app locally:
       ```bash
       pip install -r requirements.txt
@@ -30,8 +30,6 @@ This section is for those interested in helping you develop your dashboard.
       python src/app.py
       ```
       The dashboard will be available at `http://127.0.0.1:8050`.
-    - Suggestions for what you would like help with and how to work in your project,
-      some of this can go in contributing also.
 
 ### Comparative Analysis via Interactive Map
 In addition to the deep-dive view, the app provides a comparative mode visualized through an interactive map interface. This feature allows users to select and compare two different countries or regions side-by-side. By leveraging a spatial visualization, users can identify regional clusters of sustainability trends and benchmark the performance of nations. This dual-view approach ensures that both micro-level details and macro-level global patterns are easily accessible to the user.
