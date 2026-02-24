@@ -121,6 +121,20 @@ app.index_string = '''
             .Select-control { border-radius: 8px !important; border: 1px solid #cbd5e1 !important; box-shadow: none !important; }
             .Select-control:hover { border-color: #94a3b8 !important; }
             .has-value.Select--single > .Select-control .Select-value .Select-value-label, .has-value.is-pseudo-focused.Select--single > .Select-control .Select-value .Select-value-label { color: #0f172a !important; font-weight: 500; }
+            
+            .dashboard-title {
+                text-align: center;
+                padding: 10px 0 30px 0;
+                font-size: 2.75rem;
+                font-weight: 800;
+                color: #0f172a;
+                letter-spacing: -0.025em;
+                text-transform: uppercase;
+                border-bottom: 2px solid #298c8c;
+                margin-bottom: 30px;
+                display: flex;
+                justify-content: center;
+            }
         </style>
     </head>
     <body>
@@ -142,6 +156,9 @@ def create_kpi(id_prefix, title):
     ])
 
 app.layout = dbc.Container(fluid=True, className='p-4', children=[
+    
+    # Title
+    html.H1("Global Sustainability Tracker", className='dashboard-title'),
     
     # TOP ROW: Filters and Top KPIs
     dbc.Row(className='mb-4 align-items-stretch', children=[
