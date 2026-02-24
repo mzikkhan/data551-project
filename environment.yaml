@@ -1,0 +1,13 @@
+name: sustainability_dash
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - pip
+  - pip:
+    - dash==2.15.0
+    - dash-bootstrap-components==1.5.0
+    - pandas==2.2.0
+    - altair==5.2.0
+    - gunicorn==21.2.0
