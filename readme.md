@@ -21,15 +21,19 @@ Each chart panel features internal dropdown menus, allowing users to toggle spec
 
 ### Installation
 
-    - To install the app locally:
+To install the app locally:
       ```bash
       pip install -r requirements.txt
       ```
-    - To run the app locally:
+
+
+To run the app locally:
       ```bash
       python src/app.py
       ```
-      The dashboard will be available at `http://127.0.0.1:8050`.
+
+
+The dashboard will be available at `http://127.0.0.1:8050`.
 
 ### Comparative Analysis via Interactive Map
 In addition to the deep-dive view, the app provides a comparative mode visualized through an interactive map interface. This feature allows users to select and compare two different countries or regions side-by-side. By leveraging a spatial visualization, users can identify regional clusters of sustainability trends and benchmark the performance of nations. This dual-view approach ensures that both micro-level details and macro-level global patterns are easily accessible to the user.
