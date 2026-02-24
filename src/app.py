@@ -143,6 +143,9 @@ def create_kpi(id_prefix, title):
 
 app.layout = dbc.Container(fluid=True, className='p-4', children=[
     
+    # Title
+    html.H1("Global Sustainability Tracker", className='dashboard-title'),
+    
     # TOP ROW: Filters and Top KPIs
     dbc.Row(className='mb-4 align-items-stretch', children=[
         # Filters
