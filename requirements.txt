@@ -1,0 +1,5 @@
+dash==2.15.0
+dash-bootstrap-components==1.5.0
+pandas==2.2.0
+altair==5.2.0
+gunicorn==21.2.0
