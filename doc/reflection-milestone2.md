@@ -13,6 +13,18 @@ o	UI
 -	See all the parameter text in the drop downs
 -	Feature engineering -> billion
 
+<ul>
+  <li>First item</li>
+  <li>Second item</li>
+  <li>Third item
+    <ul>
+      <li>Indented item</li>
+      <li>Indented item</li>
+    </ul>
+  </li>
+  <li>Fourth item</li>
+</ul>
+
 
 
 # Milestone 2 Reflection for the Global Sustainability Tracker
@@ -25,6 +37,7 @@ We have implemented the core interactive dashboard of the Global Sustainability 
 The core functionalities are:
 
 -	**Dynamic filtering**
+
   o	Group selector (Continent, Country, Income Group, SDG Region)
   o	Entity selector that updates based on group
   o	Year range slider
