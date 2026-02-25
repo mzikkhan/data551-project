@@ -12,3 +12,14 @@ o	UI
 -	Fix alignment of titles
 -	See all the parameter text in the drop downs
 -	Feature engineering -> billion
+
+
+
+#Milestone 2 Reflection for the Global Sustainability Tracker#
+
+
+##What we have in our prototype##
+
+
+We have implemented the core interactive dashboard of the Global Sustainability Tracker Dashboard using Dash, Dash Bootstrap components and Altair.
+The core functionalities are:
