@@ -23,3 +23,18 @@ o	UI
 
 We have implemented the core interactive dashboard of the Global Sustainability Tracker Dashboard using Dash, Dash Bootstrap components and Altair.
 The core functionalities are:
+
+-	Dynamic filtering 
+  o	Group selector (Continent, Country, Income Group, SDG Region)
+  o	Entity selector that updates based on group
+  o	Year range slider
+-	Visualizations
+  o	Three charts are displayed (environment, economic, social), currently implemented as line charts rendered via Altair and embedded into Dash with iframes.
+-	KPI Cards
+  o	CO₂ Emissions, GDP, Natural Resource Depletion, Inflation, Women in Parliament, Life Expectancy, and Regime Type.
+  o	KPIs compute the mean for the most recent year in the selected range and compare it to the previous year, showing percent change with positive/negative styling.
+  o	Large-number formatting (K/M/B) is implemented for GDP and CO₂.
+-	Design / styling
+  o	Custom CSS for a card-based layout, hover effects, and consistent color/theme choices.
+
+
