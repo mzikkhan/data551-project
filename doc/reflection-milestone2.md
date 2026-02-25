@@ -15,10 +15,10 @@ o	UI
 
 
 
-#Milestone 2 Reflection for the Global Sustainability Tracker#
+# Milestone 2 Reflection for the Global Sustainability Tracker #
 
 
-##What we have in our prototype##
+## What we have in our prototype ##
 
 
 We have implemented the core interactive dashboard of the Global Sustainability Tracker Dashboard using Dash, Dash Bootstrap components and Altair.
