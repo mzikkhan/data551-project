@@ -1,6 +1,6 @@
 # Global Sustainability Tracker
 
-**[Link to deployed Dash dashboard on Heroku](https://placeholder-url-for-your-app.herokuapp.com/)**
+**[View Dashboard](https://sustainability-dashboard-1fd6.onrender.com/)**
 
 ## Motivation and Purpose
 The **Global Sustainability Tracker** is an interactive visualization tool designed to help researchers, policy makers, and NGOs explore the "World Sustainability Dataset" (2000–2018). Its primary objective is to highlight the complex trade-offs between a nation's rapid economic expansion and its corresponding environmental and social footprints. By visualizing these three critical dimensions side-by-side, users can critically assess whether a country’s development is truly sustainable or if it comes at the significant cost of natural resource depletion and ecological damage.
