@@ -27,7 +27,7 @@ The core functionalities are:
 
 
 <ul>
-  <li>**Dynamic filtering**</li>
+  <li><b></b>Dynamic filtering<\b></li>
   <ul>
       <li>Group selector (Continent, Country, Income Group, SDG Region)</li>
       <li>Entity selector that updates based on group</li>
