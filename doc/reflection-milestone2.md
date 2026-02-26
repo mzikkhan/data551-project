@@ -27,23 +27,23 @@ The core functionalities are:
 
 
 <ul>
-  <li><b></b>Dynamic filtering<\b></li>
+  <li><b>Dynamic filtering</b></li>
   <ul>
       <li>Group selector (Continent, Country, Income Group, SDG Region)</li>
       <li>Entity selector that updates based on group</li>
       <li>Year range slider</li>
     </ul>
-  <li>**Visualizations**</li>
+  <li><b>Visualizations</b></li>
     <ul>
       <li>Three charts are displayed (environment, economic, social), currently implemented as line charts rendered via Altair and embedded into Dash with iframes.<\li>
     </ul>
-  <li>**KPI Cards**</li>
+  <li><b>KPI Cards</b></li>
     <ul>
       <li>CO₂ Emissions, GDP, Natural Resource Depletion, Inflation, Women in Parliament, Life Expectancy, and Regime Type.</li>
       <li>KPIs compute the mean for the most recent year in the selected range and compare it to the previous year, showing percent change with positive/negative styling.</li>
       <li>Large-number formatting (K/M/B) is implemented for GDP and CO₂.</li>
     </ul>
-  <li>**Design / styling**</li>
+  <li><b>Design / styling</b></li>
     <ul>
       <li>Custom CSS for a card-based layout, hover effects, and consistent color/theme choices.</li>
     </ul>
