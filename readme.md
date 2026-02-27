@@ -2,6 +2,17 @@
 
 **[View Dashboard](https://sustainability-dashboard-1fd6.onrender.com/)**
 
+## Table of Contents
+
+1. [Overview](#overview)
+2. [Motivation and Purpose](#motivation-and-purpose)
+3. [Installation](#installation)
+4. [What You Can Do With This Dashboard](#what-you-can-do-with-this-dashboard)
+5. [Folder Structure](#folder-structure)
+6. [For Contributors](#for-contributors)
+
+---
+
 ## Overview
 The **Global Sustainability Tracker** is an interactive dashboard designed to explore trade-offs between economic growth, environmental impact, and social development across countries from **2000–2018**.
 
@@ -73,7 +84,34 @@ No technical knowledge required — simply use the dropdown menus and filters.
 
 ---
 
-### For Contributors
+## Folder Structure
+
+```
+sustainability_dashboard/
+├── data/
+│   └── raw/               
+├── doc/                   
+│   ├── proposal.md
+│   ├── reflection-milestone2.md
+│   └── team-contract.md
+├── reports/       
+│   ├── Milestone 1.ipynb
+│   ├── Milestone 2.ipynb
+│   └── explorer.ipynb
+├── src/                   
+│   └── app.py
+├── CODE_OF_CONDUCT.md
+├── CONTRIBUTING.md
+├── LICENSE
+├── Procfile
+├── README.md
+├── environment.yaml
+└── requirements.txt
+```
+
+---
+
+## For Contributors
 
 We welcome contributions!
 
