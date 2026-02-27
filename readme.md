@@ -51,6 +51,8 @@ In addition to the deep-dive view, the app provides a comparative mode visualize
 
 ![Dashboard Sketch - Comparative Map View](screen_2.png)
 
+---
+
 ### What You Can Do With This Dashboard
 
 This app is designed for:
@@ -69,6 +71,8 @@ With the dashboard, you can:
 
 No technical knowledge required — simply use the dropdown menus and filters.
 
+---
+
 ### For Contributors
 
 We welcome contributions!
@@ -83,8 +87,6 @@ If you're interested in improving the project, here’s how you can help:
 - Optimize callback performance
 - Add unit tests
 
----
-
 #### 🚀 How to Run Locally
 
 1. Clone the repository
@@ -94,8 +96,6 @@ If you're interested in improving the project, here’s how you can help:
 3. Install dependencies
 
 4. Run `python src/app.py`
-
----
 
 ### 📌 Suggested Workflow
 
