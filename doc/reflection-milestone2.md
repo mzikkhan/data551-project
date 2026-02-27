@@ -17,7 +17,7 @@ The core functionalities are:
     </ul>
   <li><b>Visualizations</b></li>
     <ul>
-      <li>Three charts are displayed (environment, economic, social), currently implemented as line charts rendered via Altair and embedded into Dash with iframes.<\li>
+      <li>Three charts are displayed (environment, economic, social), currently implemented as line charts rendered via Altair and embedded into Dash with iframes.</li>
     </ul>
   <li><b>KPI Cards</b></li>
     <ul>
